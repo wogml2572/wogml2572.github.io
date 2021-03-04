@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+	    <meta charset="UTF-8">
+		<title>비짓제주 VISITJEJU</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=0, maximum-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="title" content="제주시청 관광문화 홈페이지">
+		<meta name="keywords" content="제주관광문화, 제주시청 관광문화, 제주시 여행정보">
+		<meta name="description" content="제주관광문화 홈페이지">
+		<link rel="shortcut icon" href="./img/icons/ico_zzim_l_2.png">
+		<!-- 폰트를 정의하고, 초기화 스타일을 가져오기 -->
+		
+		<link rel="stylesheet" href="fontsystem.css">
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/notosanskr.css">
+		 <!--[if lt IE 9]>
+    <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <script src="./js/respond.min.js"></script>
+    <![endif]-->
+    <!-- 구글 애널리틱스에 가입하고, 해당 사이트를 등록한 후 소스코드를 복사하여 붙여넣기 -->
+    <!-- https://github아이디.github.io/web1 -->
+    <!-- 구글 애널리틱스 소스 코드 
+    <script async src="googleanalytics.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-1708370-27');
+    </script>
+    -->
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+<!--
+    <script src="jquery.ajax-cross-origin.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            crossOrigin: true,
+            url:"http://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108", 
+            dataType: 'xml',
+            success:function(response){
+                console.log(response);
+                $(response).find('location').each(function(){
+                   var city=$(this).find('city').text();
+                    if(city='대전') {
+                        $("body").append(city+"<br>");
+                        $(this).find("data").each(function(){
+                           var output=$(this).find("tmEf").text()+" "+$(this).find("wf").text();
+                            $("body").append(output+"<br>");
+                        });
+                    }
+                });
+            }
+        });
+    });  
+    </script>
+-->
+		<style>
+		/* 내부 스타일 */
+         body,html {width: 100%; overflow-x: hidden; }
+        .container {clear:both; width: 100%;}
+        .hd {clear:both; width:100%; 
+            background-image:url("./img/hdBg.png");
+            background-repeat: repeat-x; }
+        .hd_wrap { clear:both; width: 1200px; margin: 0 auto; }
+        .tnb { width: 100%; }
+        .t_left {float:left; }
+        .t_right {float:right; }
+        .tnb li { float: left;}
+        .tnb .t_left a { display: block; padding: 10px; padding-left: 0; padding-right: 16px; color:#fff; }
+        .lang_box { width:130px; height:48px; overflow:hidden; transition:0.5s; border:1px solid #fff; position:relative; }
+        .lang_box.on { height:168px ;}
+        .lang_box:before { content:"▼"; display:block; width:20px; height:20px; position:absolute; right:8px; top:8px; box-sizing:content-box; color:#333; }
+        .lang_box.on:before {content:"▲"; }
+        .lang_box span, .lang_box a { display:block; line-height: 40px; cursor: pointer; text-indent:16px; }
+        .lang_box a { border-top:1px dotted #aaa; }
+        .lang_box a:hover { text-decoration:underline; }
+        .ls a { display:block; width: 40px; height: 48px; 
+        background-image:url("./img/icons/bt-mnall.png"); 
+        background-position:center center; background-repeat:no-repeat; }   
+		.cur_lang { color:#fff; height: 47px; line-height: 47px;}
+		.find_open { display:block; width: 40px; height: 48px; 
+		background-image:url("./img/icons/bt-search.png"); 
+		background-position:center center; background-repeat:no-repeat; cursor:pointer; }   
+          
+		#find_open_btn { display:none; }    
+		.find_window { display:none; position:fixed; top: 48px; 
+			left:0; width: 100vw; height: 90px; background-color: #ef6d00; z-index:10; border-top:1px solid #dc7116; } 
+		#find_form { width: 900px; margin:0 auto; position:relative; }
+		.find_input { display:block; height: 48px; line-height: 48px; width: 900px; outline:0; border:0; background-color: transparent; border-bottom:1px solid #fff; margin-top: 10px; color:#fff; text-indent:12px; }    
+		.find_btn { display:block; width: 40px; height: 48px; 
+			background-color:transparent; border:0; outline:0;
+			background-image:url("./img/icons/bt-search.png"); 
+			background-position:center center; background-repeat:no-repeat; cursor:pointer; text-indent:-9999px; position:absolute; right:0; top:5px; }    
+		#find_open_btn:checked ~ .find_window { display:block; }   #find_open_btn:checked ~ .t_right .find_open { background-image:url("./img/icons/bt-close.png"); } 
+
+		.logo { display:block; float:left; padding: 24px; padding-left: 0; }    
+		.gnb { float:right; }
+		.gnb .mn { float:left; height: 106px; }
+		.gnb .mn > a { display:block; height: 106px; line-height:106px; padding-left:64px; font-size:18px; }  
+		.gnb .mn:hover > a { text-decoration:underline; color:#1f73ba; }    
+		.sub { width: 100vw; position:absolute; top: 154px; left: 0; display:none; background-color:#fff; z-index:20; 
+			border-top:1px solid #32374f; 
+			border-bottom:2px solid #32374f; 
+			background-image:url("./img/geoje_map4.png"); background-repeat: no-repeat; background-position:12% 30px; min-height:300px; }
+		.gnb .mn:hover .sub { display:block; }    
+		.sub_cate { float:left; }
+		.sub_cate { padding: 20px; padding-right:10px; min-width:130px; }    
+		.sub_cate:first-child { margin-left:34%; }
+		.mn:nth-child(3) .sub_cate:first-child {margin-left:42%; }
+		.mn:nth-child(4) .sub_cate:first-child {margin-left:42%; }
+		.mn:nth-child(5) .sub_cate:first-child {margin-left:42%; }
+		.sub_cate li.sub_cate_tit { height: 40px; 
+		 line-height: 40px; text-align:center; font-weight:bold; width: 138px; margin:0 auto; 
+		 border:1px solid #6284a1; letter-spacing:-1px; 
+		 font-size:14px; }    
+		 .sub_cate li a { display:block; line-height: 40px; font-size:14px; text-indent:15px; background-image:url("./img/submenu_bullet.png"); background-repeat: no-repeat; background-position:0px 15px; }    
+		 .sub_cate li a:hover { text-decoration:underline; color:#6284a1; }   
+
+		 .col300 { display:block; width: 300px; height: 278px; float:left; overflow:hidden; } 
+		 .col600 { display:block; width: 600px; height: 556px; float:left; overflow:hidden; }
+		 .col1200 { clear:both; display:block;  width: 1200px; height:556px; margin:0 auto; }   
+    
+		 .ft { clear: both; width: 100%; }   
+		 .ft_wrap1 { clear:both; width: 100%; height: 50px; 
+			background-color: #ef6d00; }
+		 .fnb { width: 1280px; margin:0 auto; } 
+		 .fnb li { float:left; width: 25%; position:relative; }
+		 .fnb li .cur_cate { display:block; line-height: 50px; color:#fff; padding-left: 24px; border-left:1px solid #d76d14; cursor:pointer; }  
+		 .fnb .popup { position:absolute; bottom:50px;  left:0; 
+			background:rgba(255,255,255,0.8); width: 100%; display:none;  }
+		 .fnb li.on .popup { display:block; }    
+		 .fnb li:before { content:"▼"; position:absolute; right:20px; top:10px; color:#fff; }    
+		 .fnb li.on:before { content:"▲"; }    
+		 .fnb .popup li { clear: both; width: 100%; }    
+		 .fnb .popup li a { display:block; padding-left: 24px; line-height: 36px; }
+		 .fnb .popup li a:hover { color:#42a2eb; }
+		 .ft_wrap2 { width: 1280px; margin: 0 auto; clear:both; position:relative;  border-top:1px solid #f1f1f1; 
+		  height:auto; overflow:hidden; }
+		 .ft_banner { width:200%; height: 50px; overflow:hidden; }    
+		 .ft_banner li { float:left; }    
+		 .ft_banner li a { display:block; padding:10px; padding-left: 0; padding-right: 20px; } 
+	 	 .ft_banner li a img { display:block; height: 30px; width:auto; }    
+		 .ft_link li { float: left; }
+		 .ft_link li a { display:block; padding: 10px; padding-left: 0; }
+		 .ft_link li a:hover { text-decoration:underline; }    
+		 .ft_link li + li a:before { content:"|"; padding-right: 10px; color:#ccc; font-weight:100; text-decoration:none; } 
+		 .ft_link li:first-child a { color:#000; font-weight:500; }    
+		 .copyright { clear:both; padding-bottom: 24px; }  
+		 .ortxt { color:chocolate; }    
+		 .wamark { display:block; position:absolute; right:350px; bottom:15px; }
+		 .mark2 { display:block; position:absolute; right:1px;bottom:15px;}
+			
+		</style>
+		<style>
+		/* 메인-비주얼 배너 부분 */ 
+		.content { clear: both; width: 100%; }
+   		.page { clear:both; width:100%; height:auto; 
+        background-repeat: no-repeat; background-position:center center; background-size:cover;
+        position:relative; padding-bottom:100px; overflow:hidden; }
+    	.page_container { width: 1280px; margin: 0 auto; }    
+		.vs { clear:both; width: 100%; height:37vw; }
+		.ban_box { width: 400%; height:100%; }
+		.ban_box li { float:left; width: 25%; height:100%; 
+			position:relative; }
+		.ban_box li img { display:block; width: 100%; height:auto; }  
+		.ban_box li .tit_box { position:absolute; top: 0; left: 0;
+			width: 100%; padding-top: 150px; }        
+		.ban_tit { font-family: 'TTTogether'; font-size:66px; 
+			text-align:center; color:#fff; font-weight:400; }
+		.ban_tit span { font-family: 'Noto Sans KR'; font-size:48px; }    
+		.ban_com { display:block; text-align:right; padding-right: 160px; color:#fff; margin-top: 150px; font-size:18px; 
+		position:relative; padding-left: 30px; background-image:url("./img/icons/bannerIcon1.png"); 
+		background-repeat:no-repeat; float:right; text-shadow:1px 1px 1px #000; }  
+			
+		.btn_box li button { display:block; outline:0; border:0; background-color:#fff; width:10px; height:10px; 
+		 border-radius:10px; position:absolute; bottom:320px; box-sizing:content-box; box-shadow:0px 0px 3px #000; }
+		.btn_box li.on button { background-color:transparent;
+			border:3px solid #fff; bottom:318px; }    
+		.btn_box li.a1 button { left:47%; }   
+		.btn_box li.a2 button { left:49%; }   
+		.btn_box li.a3 button { left:51%; }   
+		.btn_box li.a4 button { left:53%; } 		
+		</style>
+		<style>
+		/* 페이지 공통 */ 
+		.page_container:before { content:"";
+			display:block; position: absolute;    width: 440px;
+		height: 440px;    left: 50%;    top: -300px;
+		transform: translate(-50% ,0);    box-sizing: border-box;
+		padding-top: 320px;    border-radius: 50%;
+		text-align: center;    box-shadow: 7px 7px 0px rgba(0,0,0,0.1); background-color:#ef6d00; }  
+		.page_tit1 { width: 100%; color:#fff; text-align:center; position:absolute; top:18px; left: 0; font-family: 'Noto Sans KR'; font-size:2em;}    
+		.page_tit2 { width: 100%; color:#fff; text-align:center; position:absolute; top:48px; left: 0; font-family: 'TTTogether'; font-size:32px; font-weight:400; }     
+
+		.grd_item { position:relative; }    
+		.grdbox { clear:both; margin:0 auto; padding-top: 220px; }
+		.gtit1 { font-size:20px;    font-family: 'Noto Sans KR';
+		display: block;    line-height:60px; padding-top: 8px;
+		position: relative; text-align:center; font-weight:500; } 
+		.gtit1:after {  content: "";  display: inline-block;
+		position: absolute;    bottom: 0;
+		width: 34px;    height: 2px;   left: 50%;    margin-left: -17px;     background-color: #ccc;        }
+		.gtit2 { font-size:20px;    font-family: 'Noto Sans KR';
+		display: block;    line-height:60px; padding-top:12px;
+		position: relative; text-align:center; color:#fff; font-weight:500; text-shadow:1px 1px 1px #000;} 
+		.gtit2:after {  content: "";  display: inline-block;
+		position: absolute;    bottom: 0;
+		width: 34px;    height: 2px;   left: 50%;    margin-left: -17px;     background-color: #fff;        }
+
+		.gcom0 { color:#000; font-weight: 400; padding: 14px 68px; text-align:center;}
+		.gcom1 { color: #fff; font-weight:400; padding:14px 68px;
+			text-align:center; text-shadow: 1px 1px 1px #ccc; }
+		.gcom2 { color:#fff; text-shadow: 1px 1px #000, 1px 1px #000; padding:14px 34px; text-align:center; }    
+		.umore {    position: relative;    z-index: 99;
+				display: block;    margin: 34px auto 0;
+				background: url("./img/icons/btn_movie_play.png") no-repeat;            width: 76px;            height: 76px;
+		}
+		.gmore2 { display: block;    margin: 26px auto 0;
+		background: url("./img/icons/ico_go-bright.png") no-repeat;
+		width: 38px;    height: 38px; }
+
+		#page1 { background-image:url("./img/sec1Bg1.png");
+			background-color:#ebebeb; }
+		#page2 { background-image:url("./img/sec2Bg1.png"); background-color:#e0e0e0; }
+		#page3 { background-image:url("./img/sec3Bg1.png"), url("./img/sec3Bg2.png"); background-size: auto; 
+			background-repeat: no-repeat, repeat-x; background-position:center bottom, center top; } 
+		#page1 .gtit2 { text-shadow:1px 1px 1px #333; }		
+		#page1 .gtit2:after { background-color:#ef6d00; }    
+		/* 페이지1 */    
+		#page1 .grd_item.left .item1 { background-color:#ccc; }
+		#page1 .grd_item.left .item1 a { display:block; width:150px; height: 120px; float:left; background:#ef6d00;
+		border-left: 1px solid #fff; margin-top:20px; color:#000; text-align:center; line-height: 185px; background-position:center center; background-repeat:no-repeat; }
+		#page1 .grd_item.left .item1 a.app_icon1 { background-image: url("./img/icons/Android-1.png"); }    
+    	#page1 .grd_item.left .item1 a.app_icon2 { background-image: url("./img/icons/Apple-1.png"); }
+		#page1 .grd_item.left .item1 { background-color:#fff; }
+		#page1 .grd_item.left .item2 { background:url("./images/Bg01.png") no-repeat; background-size:auto 100%; background-position:center center; }
+		#page1 .grd_item.left .item3 { background:url("./images/Bg02.png") no-repeat; }
+		#page1 .grd_item.left .item4 { background-color:#ffb374; }
+		#page1 .grd_item.left .item4 a { display:block; width:110px; 
+			line-height: 40px; color:#fff; text-align:center; float:left; background:#ef6d00; margin:18px;  }   
+		#page1 .grd_item.left .item4 a:hover { text-decoration:underline; }
+		#page1 .grd_item.left .item4 a:first-of-type, #page1 .grd_item.left .item4 a:last-child { background:#ef6d00; }   #page1 .grd_item .item4 a:first-of-type, #page1 .grd_item .item4 a:nth-of-type(2) { margin-top:40px; }  
+		.ra, .rd { display:none; }
+		.slider { width:800%; height: 556px; }
+		.slider li { float:left; width: 12.5%; position:relative; } 
+		#sl1 { margin-left: 0; transition:0.6s; }    
+		#ra1:checked ~ #sl1 { margin-left: 0; }    
+		#ra2:checked ~ #sl1 { margin-left:-100%; } 
+		#ra3:checked ~ #sl1 { margin-left:-200%; }     
+		#ra4:checked ~ #sl1 { margin-left:-300%; } 
+		#ra5:checked ~ #sl1 { margin-left:-400%; }  
+		#ra6:checked ~ #sl1 { margin-left:-500%; } 
+		#ra7:checked ~ #sl1 { margin-left:-600%; }  
+		#ra8:checked ~ #sl1 { margin-left:-700%; }
+		#sl1 li { width: 600px; height: 555px; overflow:hidden; }		
+		#sl1 li img { display:block; height:555px; width:auto; }		
+
+		.sl_tit_box { position:absolute; top: 0; left: 0; padding-left: 50px; padding-top: 50px; color:#fff; text-shadow:1px 1px 2px #333; }    
+		.sl_tit2 { font-family: 'TTTogether'; font-size:30px; font-weight:400; } 
+		.sl_com { padding-top:28px; }    
+		#sl_box1 { position:absolute; right:0; bottom:0; z-index:24; background-color:#fff; background-image:url("./img/rail1.png"); background-position:20px 30px; background-repeat: no-repeat; padding-top: 10px; 
+			padding-bottom: 10px; padding-right: 10px; } 
+		#sl_box1 li { position:relative; }
+		#sl_box1 li label { display:block; line-height: 40px; padding:0 30px; margin-left:40px; border:2px solid transparent;  cursor:pointer; } 
+		#sl_box1 li:before { content:""; display:block; width: 10px; height: 10px; border:4px solid transparent; box-sizing: content-box;  border-radius:20px; position:absolute; top: 13px; 
+			background-color:#ef6d00; left:12px; }
+		#sl_box1 li.on:before { border-color:#ef6d00; background-color:#fff; } 
+		#sl_box1 li.on label { border-color:#ef6d00; }         
+    </style>
+     	<style>
+    /* 페이지2 */    
+    #page2 .grd_item.right .item1 { background-color:#4abab4; }
+    #page2 .grd_item.right .item1 .gtit2 { margin-top: 30px; line-height: 1.2; text-shadow:1px 1px 1px #333; }
+    #page2 .grd_item.right .item1 .gtit2:after { bottom:-20px; margin-top: 20px; }
+    #page2 .grd_item.right .item1 .gtit3 { font-size: 0;
+    display: block;    margin: 50px auto 0;
+    background: url("./img/ico_newvr2.png") no-repeat;
+    width: 120px;        height: 72px; }
+    #page2 .grd_item.right .item2 { background:url("./img/sec2Bg4.png") no-repeat; }    
+    #page2 .grd_item.right .item3 { background:url("./img/sec2Bg5.png") no-repeat; }
+    #page2 .grd_item.right .item4 { background-color:#fff; position:relative; }
+    #page2 .grd_item.right .item4 .gtit1 { line-height: 1.2; margin-top: 45px; }
+    #page2 .grd_item.right .item4 .gtit1:after { bottom: -20px; } 
+    #page2 .grd_item.right .item4 a { display:block; width: 50%; 
+         float:left; line-height: 40px; text-align:center; position:absolute; bottom: 0; left: 0; background:#4abab4; color:#fff; }
+    #page2 .grd_item.right .item4 a:first-of-type { bottom:40px; 
+        border-right:1px solid #fff; border-bottom:1px solid #fff; }        
+    #page2 .grd_item.right .item4 a:nth-of-type(2) { bottom:40px; left: 150px; border-bottom:1px solid #fff; }
+    #page2 .grd_item.right .item4 a:nth-of-type(3) { border-right:1px solid #fff; }   
+    #page2 .grd_item.right .item4 a:last-child { left: 150px; }    
+        
+    #sl2 { margin-left: 0; transition:0.6s; } 
+    #sl2 li a { display:block; }
+    #sl2 li a img { display:block; width: 100%; height:auto; }    
+    #rd1:checked ~ #sl2 { margin-left: 0; }    
+    #rd2:checked ~ #sl2 { margin-left:-100%; } 
+    #rd3:checked ~ #sl2 { margin-left:-200%; }     
+    #rd4:checked ~ #sl2 { margin-left:-300%; }
+    #sl_box2 { position:absolute; right:0; bottom:0; width: 300px; height: 278px; background-color:#4abab4; overflow:hidden; }
+    #sl_box2 li { display:none; }    
+    #sl_box2 li .thum { width: 145px; height: 145px; 
+        margin: 20px auto; background-position:center center;
+        background-repeat: no-repeat; border-radius:80px; 
+        border:4px solid #fff; overflow:hidden; }
+	#sl_box2 li.item1 .thum { background-image:url("./img/bg_healing-1.png"); } 
+	#sl_box2 li.item2 .thum { background-image:url("./img/bg_healing-2.png"); }  
+	#sl_box2 li.item3 .thum { background-image:url("./img/bg_healing-3.png"); }  
+	#sl_box2 li.item4 .thum { background-image:url("./img/bg_healing-4.png"); }  
+    #sl_box2 li label { display:block; width: 18px; height: 36px; position:absolute; background-repeat: no-repeat; 
+        background-position:center center; top:50%; }
+    #sl_box2 li label.lbtn { background-image: url("./img/icons/btn_section6-prev.png"); left:20px; }
+    #sl_box2 li label.rbtn { background-image: url("./img/icons/btn_section6-right.png"); right:20px; }   
+
+    #rd1:checked ~ #sl_box2 li.item1 { display:block; }    
+    #rd2:checked ~ #sl_box2 li.item2 { display:block; } 
+    #rd3:checked ~ #sl_box2 li.item3 { display:block; }     
+    #rd4:checked ~ #sl_box2 li.item4 { display:block; }
+        
+    #sl2 .sl_tit3 { line-height: 1.2; }    
+    #sl2 .btxt {   font-family: 'TTTogether', 'NotokrB';
+        font-weight: 100;    color: #0e61ef;    font-size: 45px; } 
+    #sl2 .gtxt { color: #00bcb5;    font-size: 50px;
+    display: block;    font-family: 'TTTogether', 'NotokrB';
+        font-weight: 100; }  
+    #sl2 .sl_com2 { padding-top: 32px; color:#666; text-shadow:1px 1px 2px #fff; } 
+	#sl2 li {width:600px; height:555px; overflow:hidden; }
+	#sl2 li a img { display:block; height: 555px; width: auto; }
+	#page2 {height: auto; }
+	.page_container, .page, .content { height: auto; overflow:hidden; }		
+	.page_container:after {content: ""; clear: both; display: block; }
+	.page:after {content: ""; clear: both; display: block; }	
+	.content:after {content: ""; clear: both; display: block; }		
+    </style>
+    	<style>
+    /* 페이지3 */    
+    .ico_box { clear:both; width: 1278px; margin: 0 auto; 
+        padding-top:270px;} 
+    .ico_box li { float:left; width: 212px; cursor:pointer;
+        height: 180px;} 
+    .ico_box li img { display:block; width:auto; height: auto; border:5px solid #fff; background-color:#fff; border-radius:60px; box-sizing: content-box; padding: 10px; margin: 5px auto; }
+	
+    .ico_box li .hv_txt { display:block; line-height: 40px; 
+        text-align: center; }  
+    .ico_box li:hover img { border:5px solid #ef6d00; }
+    .ico_box li:hover .hv_txt { color: #ef6d00; } 
+    .nt_box { clear:both; height: 316px; background-color:#fff; width: 1200px; margin: 20px auto; margin-top: 60px; }
+    .nt_box .left.col600 { padding: 20px; position:relative; height: auto; background-color:#ebebeb; }
+    .nt_tit { font-size:24px; font-weight:400; }
+    .more3 { display:block; font-size:32px; font-weight:300; position:absolute; right:20px; top:14px; } 
+    .nt_lst { clear:both; padding-top:20px; }
+    .nt_lst li { background-image:url("./img/submenu_bullet.png"); background-repeat:no-repeat; background-position:0px 18px; padding-left: 14px; border-bottom:1px dotted #ccc; clear:both; }
+    .nt_lst li.cur_lst { background-image:url("./img/sec3Notice.png"); padding-left:64px; 
+        margin-bottom: 10px; border:0; }   
+    .nt_lst li .txt_tit { display:block; padding-top:9px; padding-bottom:9px; float:left; }
+    .nt_lst li .date { padding-top:9px; padding-bottom:9px; float:right;} 
+    .nt_lst li .txt_com { display:block; clear:both; 
+        white-space: normal; line-height: 1.2; height: 2.4em; text-align: left; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient: vertical; overflow:hidden; text-overflow:ellipsis; margin-bottom: 10px; }
+    #page3 .tit_box { float:left; width: 255px; height: 316px; 
+        background-color:#ef6d00; color:#fff; text-align:center; padding: 24px; padding-top:60px; }
+    #page3 .conti_box { float:right; width: 345px; height: 316px; }    
+    .tit1 { font-size:24px; font-weight:400; }
+    .com1 { font-size:16px; font-weight:400; padding-top: 24px; } 
+    .btn_box3 { clear:both; width: 132px; margin: 10px auto; 
+        margin-top: 60px; }    
+    .btn_box3 li { width: 37px; height: 37px; float: left;
+        margin:3px; }   
+    .btn_box3 li button { display:block; background-color:#eee; border:1px solid #ccc; width: 37px; height: 37px; background-position:center center; background-repeat:no-repeat; }  
+    .btn_box3 li button.prev { background-image:url("./img/icons/fb-prev.png"); }    
+    .btn_box3 li button.play { background-image:url("./img/icons/fb-stop.png");  }   
+    .btn_box3 li button.play.on { background-image:url("./img/icons/fb-play.png");  }    
+    .btn_box3 li button.next { background-image:url("./img/icons/fb-next.png");  } 
+    .conti_box { overflow:hidden; }   
+    .img_box { width: 400%; }
+    .img_box li { float:left; width: 25%; position:relative; } .img_box li a { display:block; }
+    .img_box li a img { display:block; width: 260px; height: auto; margin: 20px auto; }   
+    .img_tit { text-align:center; line-height:28px; }
+    .img_com { text-align:center; line-height:28px; } 
+	#page3 > section > div > div.right.col600 { height: auto; }		
+    </style>
+	    <script>
+    $(document).ready(function(){
+        //언어 설정
+        $(".cur_lang").click(function(){
+           $(".lang_box").toggleClass("on");
+        });
+        //스크롤시 검색창 사라짐
+        $(window).scroll(function(){
+           var par = parseInt($(this).scrollTop());
+           var chk = $("#find_open_btn").prop("checked");    
+            if(par>=200){
+                $("#find_open_btn").removeProp("checked");
+            }
+        });    
+    });    
+    </script>
+    <script src="./js/slider.js"></script>
+    <script>
+    //비주얼 배너 부분 연결    
+    $(document).ready(function(){
+       $(".vs .ban_box").sliding({spd:500, intv:4500, chd:"li", numfr:".btn_box", numbox:".btn_box li"}); 
+    });    
+    </script>
+    <style> 
+    /* 퀵 메뉴 부분 */    
+    .quick { position:fixed; right:0px; top:40%; z-index:999; width:222px; height: 240px; } 
+    .quick li { clear:both; margin:14px; height:66px; width: 120px;  transition:0.5s; 
+        position:relative;  }  
+    .quick li.on { width: 220px; }    
+    .quick li a { display:block; }
+    .quick li a span { display:block; float:left; line-height: 66px; }
+    .quick li a span.qtxt { padding-right: 16px; opacity:0; transition:0.3s; }
+    .quick li.on a span.qtxt { opacity:1; }   
+    .quick li.item1.on a span.qtxt {  color:#ef6d00;   } 
+    .quick li.item2.on a span.qtxt {  color:#ef6d00;   } 
+    .quick li.item3.on a span.qtxt {  color:#ef6d00;   } 
+    .quick li a span.qicon { width: 66px; height: 66px; background-repeat: no-repeat; background-position:center center; border:3px solid #fff; background-color: transparent; border-radius:40px;
+        transition:0.3s; position:absolute; top:0px; right:50px; }  
+    .quick li.on a span.qicon { right:86px;  }    
+    .quick li.item1 a span.qicon { background-image:url("./img/icons/secTap1.png"); }   
+    .quick li.item2 a span.qicon { background-image:url("./img/icons/secTap2.png"); }   
+    .quick li.item3 a span.qicon { background-image:url("./img/icons/secTap3.png"); } 
+    .quick li.item1.on a span.qicon { border:3px solid #fff; background-color: #ef6d00;}   
+    .quick li.item2.on a span.qicon { border:3px solid #fff; background-color: #ef6d00;} 
+    .quick li.item3.on a span.qicon { border:3px solid #fff; background-color: #ef6d00;} 
+    .quick li a:after { content:""; display:block; float:right; width:0px; height: 3px; top: 33px; right: -14px; transition:0.5s; position:absolute; }
+    .quick li.on a:after { width: 100px; }   
+    .quick li.item1 a:after { background-color:#ef6d00; }    
+    .quick li.item2 a:after { background-color:#ef6d00; }    
+    .quick li.item3 a:after { background-color:#ef6d00; }    
+    </style>
+    <script>
+    /* 푸터 하단 선택 메뉴 */    
+    $(document).ready(function(){
+        $(".fnb li").attr("data-count", 0);
+        $(".fnb li").click(function(){
+           $(".fnb li").removeClass("on");
+           $(this).attr("data-count", parseInt($(this).attr("data-count"))+1); 
+            var cnt = parseInt($(this).attr("data-count"));
+           if(cnt % 2 == 1) {       
+               $(this).addClass("on"); 
+           } else {
+               $(this).removeClass("on"); 
+           }
+        });
+    });    
+    </script>
+    <script>
+    /* 퀵 메뉴 부분 */    
+    $(document).ready(function(){
+        $(".quick").css("display","none");
+        $(window).scroll(function(){
+            var pg1 = $("#page1").offset().top;
+            var pg2 = $("#page2").offset().top;
+            var pg3 = $("#page3").offset().top;
+            var ft = $(".ft").offset().top;
+            var pgTop = $(window).scrollTop();
+            if(pgTop>=pg1-300 && pgTop<pg2-300){
+                $(".quick").fadeIn(700);
+                $(".quick li").removeClass("on");
+                $(".quick li").eq(0).addClass("on");
+            } else if(pgTop>=pg2-300 && pgTop<pg3-300){
+                $(".quick li").removeClass("on");
+                $(".quick li").eq(1).addClass("on");
+            } else if(pgTop>=pg3-300 && pgTop<ft-300) {
+                $(".quick li").removeClass("on");
+                $(".quick li").eq(2).addClass("on");
+            } else {
+                $(".quick").fadeOut(700);
+                $(".quick li").removeClass("on");
+            } 
+        });
+    });    
+		</script>
+	</head>
+	<body>
+    <div class="container">
+        <header class="hd">
+           <div class="hd_wrap">
+            <nav class="tnb">
+                <ul class="t_left">
+                    <li><a href="jeju_login.html">로그인</a></li>
+                    <li><a href="jeju_join.html">회원가입</a></li>
+                    <li><a href="jeju_map.html">오시는길</a></li>
+                </ul>
+                <input type="checkbox" id="find_open_btn">
+                <div class="find_window">
+                    <form action="" id="find_form" name="find_form" class="frm">
+                        <input type="text" id="keyword" class="find_input" placeholder="검색어 입력">
+                        <input type="submit" id="find_btn" class="find_btn">
+                    </form>
+                </div>
+                <ul class="t_right">    
+                    <li class="lang">
+                        <div class="lang_box">
+                           <span class="cur_lang">LANGUAGE</span>
+                            <a href="https://www.visitjeju.net/en/#" target="_blank">ENGLISH</a>
+                            <a href="https://www.visitjeju.net/cn/#" target="_blank">中文</a>
+                            <a href="https://www.visitjeju.net/jp/#" target="_blank">日文</a>
+                        </div>
+                    </li>
+                        <li class="ls">
+                            <a href=""></a>
+                            </li>
+                        <li class="find">
+                            <label for="find_open_btn" class="find_open"></label>
+                        </li>
+                    </ul>
+                </nav>
+            </div> <!-- 상단 메뉴-->
+        <div class="hd_wrap">
+        <a href="index.html" class="logo">
+            <img src="./img/icons/main_ico.png" alt="로고">
+        </a>
+            <nav class="gnb">
+                <ul>
+                    <li class="mn">
+                       <a href="jeju_sub01.html">관광지</a> 
+                        <div class="sub">
+                            <ul class="sub_cate">
+                                <li class="sub_cafe_tit">전체</li>
+                                    <li><a href="jeju_sub.html#page1">템플스테이</a></li>
+                                    <li><a href="jeju_sub.html#page2">제주4·3</a></li>
+                                    <li><a href="jeju_sub.html#page3">의료관광</a></li>
+                                    <li><a href="jeju_map.html">포토스팟</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">자연</li>
+                                    <li><a href="">산</a></li>
+                                    <li><a href="">오름</a></li>
+                                    <li><a href="">해변</a></li>
+                                    <li><a href="">계곡</a></li>
+                                    <li><a href="">폭포</a></li>
+                                    <li><a href="">휴양림</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">문화관광</li>
+                                    <li><a href="mu1">미술관</a></li>
+                                    <li><a href="mu1">전시관</a></li>
+                                    <li><a href="mu1">그외</a></li>
+                                    <li><a href="mu1">문화재</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">테마관광지</li>
+                                    <li><a href="mu1">공연장</a></li>
+                                    <li><a href="mu1">박물관</a></li>
+                                    <li><a href="mu1">테마공원</a></li>
+                                    <li><a href="mu1">그외</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">도보</li>
+                                    <li><a href="mu1">제주올레</a></li>
+                                    <li><a href="mu1">지질트레일</a></li>
+                                    <li><a href="mu1">생태·숲길</a></li>
+                                    <li><a href="mu1">그외</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">레저/체험</li>
+                                    <li><a href="mu1">골프</a></li>
+                                    <li><a href="mu1">승마</a></li>
+                                    <li><a href="mu1">패러글라이딩</a></li>
+                                    <li><a href="mu1">해양스포츠</a></li>
+                                    <li><a href="mu1">캠핑</a></li>
+                                    <li><a href="mu1">체험</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mn">
+                    <a href="jeju_sub02.html">제주이야기</a> 
+                    <div class="sub">
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">유네스코</li>
+                                    <li><a href="jeju_sub.html#page1">생물권 보전지역</a></li>
+                                    <li><a href="jeju_sub.html#page2">세계자연유산</a></li>
+                                    <li><a href="jeju_sub.html#page3">세계지질공원</a></li>
+                                    <li><a href="jeju_sub.html#page4">인류무형문화유산</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">제주명품42</li>
+                                    <li><a href="">7대 비경</a></li>
+                                    <li><a href="">7대 도로</a></li>
+                                    <li><a href="">7대 체험거리</a></li>
+                                    <li><a href="">7대 향토음식</a></li>
+                                    <li><a href="">7대 특산물</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">문화와 역사</li>
+                                    <li><a href="">탄생설화</a></li>
+                                    <li><a href="">민속</a></li>
+                                    <li><a href="">의식주</a></li>
+                                    <li><a href="">삼다도</a></li>
+                                    <li><a href="">역사</a></li>
+                                    <li><a href="">지형지질</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">영상속제주</li>
+                                    <li><a href="">체험 제주</a></li>
+                                    <li><a href="">축제 제주</a></li>
+                                    <li><a href="">이미지 제주</a></li>
+                                    <li><a href="">사용자 참여/기타</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">제주 4·3</li>
+                                    <li><a href="">제주 4·3 바로알기</a></li>
+                                    <li><a href="">제주 4·3 평화재단 바로가기</a></li>
+                                    <li><a href="">제주 4·3 70주년 기념사업위원회</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mn">
+                    <a href="">음식점</a> 
+                    <div class="sub">
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">향토음식</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">한식</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">양식</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">일식</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">카페</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mn">
+                    <a href="">숙박</a> 
+                    <div class="sub">
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">안전인증민박</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">관광호텔</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">호스텔/소형호텔</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">생활숙박</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">농어촌민박</li>
+                            </ul>
+                        </div>
+                    </li>
+                     <li class="mn"><a href="">여행필수정보</a> 
+                    <div class="sub">
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">안전·안심관광 가이드</li>
+                                    <li><a href="">안전한 여행 TIP</a></li>
+                                    <li><a href="">안심숙소 체크 가이드</a></li>
+                                    <li><a href="">안전인증민박</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">교통</li>
+                                    <li><a href="">항공</a></li>
+                                    <li><a href="">여객선/도항선</a></li>
+                                    <li><a href="">제주버스</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">가이드북</li>
+                                    <li><a href="">안내책자</a></li>
+                                    <li><a href="">관광지도</a></li>
+                                    <li><a href="">관광지도 우편 신청</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">날씨</li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">무장애 관광</li>
+                                    <li><a href="">장애인 관광안내</a></li>
+                                    <li><a href="">장애인 시설 제공 관광지</a></li>
+                                    <li><a href="">장애 유형별 관광정보</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mn">
+                        <a href="">커뮤니티</a>
+                        <div class="sub">
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">커뮤니티</li>
+                                <li><a href="">새소식</a></li>
+                                <li><a href="">내가찍은제주</a></li>
+                                <li><a href="">인증샷 갤러리</a></li>
+                                <li><a href="">여행후기</a></li>
+                                <li><a href="">포토 갤러리</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">공모전</li>
+                                <li><a href="">제주여행공유 SNS 공모전</a></li>
+                                <li><a href="">제7회 제주○○여행 SNS 공모전</a></li>
+                                <li><a href="">제6회 제주관광투어 SNS 공모전</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">블로그</li>
+                                <li><a href="">제5회 제주관광투어블로그</a></li>
+                                <li><a href="">제4회 제주관광투어블로그</a></li>
+                                <li><a href="">제3회 제주관광투어블로그</a></li>
+                                <li><a href="">제2회 제주관광투어블로그</a></li>
+                                <li><a href="">제1회 제주관광투어블로그</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">신고하기</li>
+                                <li><a href="">GREAT제주캠페인</a></li>
+                                <li><a href="">관광불편신고</a></li>
+                                <li><a href="">사고/재해신고</a></li>
+                            </ul>
+                            <ul class="sub_cate">
+                                <li class="sub_cate_tit">묻고 답하기</li>
+                                <li><a href="">여행Q&amp;A</a></li>
+                                <li><a href="">웹서비스Q&amp;A</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        </header>
+        <main class="content">
+			<figure class="vs">
+				<ul class="ban_box">
+					<li class="item1">
+					   <img src="./img/mainBg.png" alt="배너1">
+						<div class="tit_box">
+							<h2 class="ban_tit">제주愛, 힐링愛 취하다</h2>
+							<span class="ban_com">성산일출봉</span>
+						</div>
+					</li>
+					<li class="item2">
+					   <img src="./img/mainBg02.jpg" alt="배너2">
+						<div class="tit_box">
+							<h2 class="ban_tit">제주愛, 힐링愛 취하다</h2>
+							<span class="ban_com">한라산</span>
+						</div>
+					</li>
+					<li class="item3">
+					   <img src="./img/mainBg03.jpg" alt="배너3">
+						<div class="tit_box">
+							<h2 class="ban_tit">제주愛, 힐링愛 취하다</h2>
+							<span class="ban_com">협재해변</span>
+						</div>
+					</li>
+					<li class="item4">
+					   <img src="./img/mainBg04.jpg" alt="배너4">
+						<div class="tit_box">
+							<h2 class="ban_tit">제주愛, 힐링愛 취하다</h2>
+							<span class="ban_com">우도</span>
+						</div>
+					</li>
+				</ul>
+				<ul class="btn_box">
+					<li class="item a1 on"><button class="ban_btn"></button></li>
+					<li class="item a2"><button class="ban_btn"></button></li>
+					<li class="item a3"><button class="ban_btn"></button></li>
+					<li class="item a4"><button class="ban_btn"></button></li>
+				</ul>
+	 <!--            <div id="weather">
+					<div class="vis-weather">
+						<h2 class="vh_hide">날씨정보</h2>
+						<p class="weather-date"></p>
+						<ul>
+							<li class="weather-temp"></li>
+							<li id="RN1">시간당강수량 : ?</li>
+							<li class="weather-state-text"></li>
+						</ul>
+					</div>
+				</div>-->               
+				</figure>
+				<div class="page" id="page1">
+					<section class="page_container">
+						<h3 class="page_tit1">테마별로 즐기는 취향저격 <br>제주 여행</h3>
+						<div class="grdbox col1200">
+							<ul class="grd_item left col600">
+								<li class="item1 col300">
+									<h3 class="gtit1">제주여행앱 다운로드</h3>
+									<p class="gcom0">제주여행을 위한 필수 앱을 다운로드 받으세요</p>
+									<a href="" class="app_icon1">안드로이드</a>
+									<a href="" class="app_icon2">아이폰</a>
+								</li>
+								<li class="item2 col300">
+									<h3 class="gtit2">더 유명해지기 전에 가봐야 할</h3>
+									<p class="gcom1">TV 속 명소</p>
+								</li>
+								<li class="item3 col300">
+									<h3 class="gtit2">제주 마을</h3>
+									<p class="gcom2">숨겨져 있던 매력을 찾아</p>
+								</li>
+								<li class="item4 col300">
+									<h3 class="gtit2">섬안의 섬여행</h3>
+									<a href="">
+										<span class="gtxt">마라도</span>
+									</a>
+									<a href="">
+										<span class="gtxt">가파도</span>
+									</a>
+									<a href="">
+										<span class="gtxt">우도</span>
+									</a>
+									<a href="">
+										<span class="gtxt">비양도</span>
+									</a>
+								</li>
+							</ul>
+							<div class="grd_item right col600">
+								<input type="radio" name="ra" class="ra" id="ra1" checked>
+								<input type="radio" name="ra" class="ra" id="ra2">
+								<input type="radio" name="ra" class="ra" id="ra3">
+								<input type="radio" name="ra" class="ra" id="ra4">
+								<input type="radio" name="ra" class="ra" id="ra5">
+								<input type="radio" name="ra" class="ra" id="ra6">
+								<input type="radio" name="ra" class="ra" id="ra7">
+								<input type="radio" name="ra" class="ra" id="ra8">
+								<ul class="slider" id="sl1">
+									<li class="item1">
+										<img src="./img/bg_story-1.png" alt="스토리1">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">사려니숲길</h3>
+											<p class="sl_com">몸과 마음을 치유받는 곳</p>
+										</div>
+									</li>
+									<li class="item2">
+										<img src="./img/bg_story-2.png" alt="스토리2">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">우도(해양도립공원)</h3>
+											<p class="sl_com">섬 속의 섬</p>
+										</div>
+									</li>
+									<li class="item3">
+										<img src="./img/bg_story-3.png" alt="스토리3">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">성산일출봉</h3>
+											<p class="sl_com">UNESCO 세계자연유산을 한눈에</p>
+										</div>
+									</li>
+									<li class="item4">
+										<img src="./img/bg_story-4.png" alt="스토리3">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">협재해변</h3>
+											<p class="sl_com">비오고 흐린 날에도 아름다운 곳</p>
+										</div>
+									</li>
+									<li class="item5">
+										<img src="./img/bg_story-5.png" alt="스토리3">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">카멜리아힐</h3>
+											<p class="sl_com">계절마다 새롭게 옷을 갈아입는 곳</p>
+										</div>
+									</li>
+									<li class="6">
+										<img src="./img/bg_story-6.png" alt="스토리3">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">새별오름</h3>
+											<p class="sl_com">제주도 서쪽 아름다운 해변과 비양도가 보이는 곳</p>
+										</div>
+									</li>
+									<li class="7">
+										<img src="./img/bg_story-7.png" alt="스토리3">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">섭지코지</h3>
+											<p class="sl_com">해안풍경이 일품인 곳</p>
+										</div>
+									</li>
+									<li class="8">
+										<img src="./img/bg_story-8.png" alt="스토리3">
+										<div class="sl_tit_box">
+											<h4 class="sl_tit1">이야기여행</h4>
+											<h3 class="sl_tit2">천지연폭포</h3>
+											<p class="sl_com">하늘과 땅이 만나는 연못</p>
+										</div>
+									</li>
+								</ul>
+								<ul class="sl_btn_box" id="sl_box1">
+									<li class="item1 on">
+										<label for="ra1">사려니숲길</label>
+									</li>
+									<li class="item2">
+										<label for="ra2">우도(해양도립공원)</label>
+									</li>
+									<li class="item3">
+										<label for="ra3">성산일출봉</label>
+									</li>
+									<li class="item4">
+										<label for="ra4">협재해변</label>
+									</li>
+									<li class="item5">
+										<label for="ra5">카멜리아힐</label>
+									</li>
+									<li class="item6">
+										<label for="ra6">새별오름</label>
+									</li>
+									<li class="item7">
+										<label for="ra7">섭지코지</label>
+									</li>
+									<li class="item8">
+										<label for="ra8">천지연폭포</label>
+									</li>
+								</ul>
+							</div>
+						</div>                   
+					</section>
+					<script>
+					$(document).ready(function(){
+				   var a = 0;    
+				   var itv = setInterval(function(){ 
+					 if(a==7) {
+						a = 0;    
+					 } else {
+						a=a+1; 
+					 }  
+					 ani(a);      
+				   }, 4000);
+					function ani(b) {
+						$(".ra").prop("checked","false");
+						$(".ra").eq(b).prop("checked","true");
+						$("#sl_box1 li").removeClass("on");
+						$("#sl_box1 li").eq(b).addClass("on");
+					}
+				}); 
+				</script>
+			   </div>
+			   <div class="page" id="page2">
+					<section class="page_container">
+						<h3 class="page_tit1">축제·행사 및 다양한 정보<br>제주의 테마여행</h3>
+						<div class="grdbox col1200">
+							<div class="grd_item left col600">
+								<input type="radio" name="rd" class="rd" id="rd1" checked>
+								<input type="radio" name="rd" class="rd" id="rd2">
+								<input type="radio" name="rd" class="rd" id="rd3">
+								<input type="radio" name="rd" class="rd" id="rd4">
+								<ul class="slider" id="sl2">
+									<li class="item1">
+										<a href="">
+											<img src="./img/bg_healing-1.png" alt="힐링1">
+											<div class="sl_tit box">
+												<h2 class="sl_tit3">
+													<span class="btxt">제주에서</span>
+													<span class="gtxt">힐링하자</span>
+												</h2>
+												<p class="sl_com2">패러글라이딩</p>
+											</div>
+										</a>
+									</li>
+									<li class="item2">
+										<a href="">
+											<img src="./img/bg_healing-2.png" alt="힐링2">
+											<div class="sl_tit box">
+												<h2 class="sl_tit3">
+													<span class="btxt">제주에서</span>
+													<span class="gtxt">힐링하자</span>
+												</h2>
+												<p class="sl_com2">비체올린
+												</p>
+											</div>
+										</a>
+									</li>
+									<li class="item3">
+										<a href="">
+											<img src="./img/bg_healing-3.png" alt="힐링3">
+											<div class="sl_tit box">
+												<h2 class="sl_tit3">
+													<span class="btxt">제주에서</span>
+													<span class="gtxt">힐링하자</span>
+												</h2>
+												<p class="sl_com2">승마
+												</p>
+											</div>
+										</a>
+									</li>
+									<li class="item4">
+										<a href="">
+											<img src="./img/bg_healing-4.png" alt="힐링4">
+											<div class="sl_tit box">
+												<h2 class="sl_tit3">
+													<span class="btxt">제주에서</span>
+													<span class="gtxt">힐링하자</span>
+												</h2>
+												<p class="sl_com2">귤밭체험
+												</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<ul class="sl_btn_box2" id="sl_box2">
+									<li class="item1">
+										<h3 class="gtit2">패러글라이딩</h3>
+										<label for="rd4" class="lbtn"></label>
+										<div class="thum"></div>
+										<label for="rd2" class="rbtn"></label>
+									</li>
+									<li class="item2">
+										<h3 class="gtit2">비체올린</h3>
+										<label for="rd1" class="lbtn"></label>
+										<div class="thum"></div>
+										<label for="rd3" class="rbtn"></label>
+									</li>
+									<li class="item3">
+										<h3 class="gtit2">승마</h3>
+										<label for="rd2" class="lbtn"></label>
+										<div class="thum"></div>
+										<label for="rd4" class="rbtn"></label>
+									</li>
+									<li class="item4">
+										<h3 class="gtit2">귤밭체험</h3>
+										<label for="rd3" class="lbtn"></label>
+										<div class="thum"></div>
+										<label for="rd1" class="rbtn"></label>
+									</li>
+								</ul>
+							</div>
+							<ul class="grd_item right col600">
+								<li class="item1 col300">
+									<a href="">
+										<h3 class="gtit2">
+											<span>GREAT</span><br>
+											<span class="cOrg">제주캠페인</span>
+										</h3>
+									</a>
+								</li>
+								<li class="item2 col300">
+										<h3 class="gtit2">
+											실감나는
+										</h3>
+									<a href="" class="umore"></a>
+								</li>
+								<li class="item3 col300">
+										<h3 class="gtit2">제주축제</h3>
+										<p class="gcom2">제주축제</p>
+									<a href="" class="gmore2"></a>
+								</li>
+								<li class="item4 col300">
+										<h3 class="gtit1">제주축제</h3>
+										<a href="" class="ico1">
+											<span class="gtxt">음식</span>
+										</a>
+										<a href="" class="ico2">
+											<span class="gtxt">숙박</span>
+										</a>
+										<a href="" class="ico3">
+											<span class="gtxt">체험관광</span>
+										</a>
+										<a href="" class="ico4">
+											<span class="gtxt">캠핑여행</span>
+										</a>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<script>
+				   /* 페이지2의 슬라이더 js없이 */    
+				$(document).ready(function(){
+				   var a = 0;    
+				   var itv2 = setInterval(function(){ 
+					 if(a==3) {
+						a = 0;    
+					 } else {
+						a=a+1; 
+					 }  
+					 ani2(a);      
+				   }, 4000);
+					function ani2(b) {
+						$(".rd").prop("checked","false");
+						$(".rd").eq(b).prop("checked","true");
+					}
+					$("#sl_box2 li .lbtn, sl_box2 li .rbtn").click(function(){
+						clearInterval(intv);
+						itv2 = setInterval(function(){ 
+						 if(a==3) { a = 0; } else { a=a+1; }  
+						 ani2(a);      
+						}, 3200);
+					});
+				});    
+				   </script>
+			</div>
+		   <div class="page" id="page3">
+					<section class="page_container">
+						<h3 class="page_tit1">소식 및 다양한 정보<br>제주 축제와 정보</h3>
+						<ul class="ico_box">
+							<li class="item1">
+								<img src="./img/icons/1.png" alt="장애인관광정보">
+								<span class="hv_txt">장애인관광정보</span>
+							</li>
+							<li class="item2">
+								<img src="./img/icons/2.png" alt="안내책자">
+								<span class="hv_txt">안내책자</span>
+							</li>
+							<li class="item3">
+								<img src="./img/icons/3.png" alt="제주관광지도">
+								<span class="hv_txt">제주관광지도</span>
+							</li>
+							<li class="item4">
+								<img src="./img/icons/4.png" alt="제주관광정보센터">
+								<span class="hv_txt">제주관광정보센터</span>
+							</li>
+							<li class="item5">
+								<img src="./img/icons/5.png" alt="관광업체등록신청">
+								<span class="hv_txt">관광업체등록신청</span>
+							</li>
+							<li class="item6">
+								<img src="./img/icons/sec3Icon9.png" alt="포토제주">
+								<span class="hv_txt">포토제주</span>
+							</li>
+						</ul>
+						<div class="nt_box">
+							<div class="left col600">
+								<h3 class="nt_tit">공지사항</h3>
+								<a href="" class="more3">+</a>
+								<ul class="nt_lst">
+									<li class="cur_lst">
+										<a href="" class="txt_tit">2021.01.16</a>
+										<a href="" class="txt_com">
+										비짓제주 #제값하는 착한가게 리뷰 이벤트 당첨자 안내
+										</a>
+									</li>
+									<li>
+										<a href="" class="txt_tit">탱귤이와 떠나는 안전한 제주여행 이벤트</a><span class="date">2021.01.29</span>
+									</li>
+									<li>
+										<a href="" class="txt_tit">2020 에코파티 대면행사 개최취소 안내</a><span class="date">2021.01.27</span>
+									</li>
+									<li>
+										<a href="" class="txt_tit">제주여행지킴이 서비스 일시 중단 안내</a><span class="date">2020.12.04</span>
+									</li>
+								</ul>
+							</div>
+							<div class="right col600">
+								<div class="right_box">
+									<div class="tit_box">
+										<h3 class="tit1">내가 찍은 제주</h3>
+										<p class="com1">제주의 겨울은 뜨겁다<br> #겨울</p>
+										<ul class="btn_box3">
+											<li><button class="prev"></button></li>
+											<li><button class="play"></button></li>
+											<li><button class="next"></button></li>
+										</ul>
+									</div>
+									<div class="conti_box">
+										<ul class="img_box">
+											<li class="item1">
+												<a href="">
+													<img src="./img/news_img_01.jpg" alt="나미송 머무는 곳">
+													<h4 class="img_tit">나미송 머무는 곳</h4>
+													<p class="img_com">2021-01-12</p>
+												</a>   
+											</li>
+											<li class="item2">
+												<a href="">
+													<img src="./img/news_img_02.jpg" alt="방문객들이 추천하는 음식점">
+													<h4 class="img_tit">비짓제주 방문객들이 추천한 가심비 따라 떠나는 <br> #제값하는착한가게 여행!</h4>
+													<p class="img_com">2021-01-01</p>
+												</a>   
+											</li>
+											<li class="item3">
+												<a href="">
+													<img src="./img/news_img_03.jpg" alt="생각하는정원">
+													<h4 class="img_tit">생각하는정원</h4>
+													<p class="img_com">2020-12-19</p>
+												</a>   
+											</li>
+											<li class="item4">
+												<a href="">
+													<img src="./img/news_img_04.jpg" alt="우진해장국">
+													<h4 class="img_tit">추천하는 착한 맛집</h4>
+													<p class="img_com">2020-12-19</p>
+												</a>   
+											</li>
+										</ul>
+									</div>
+								</div>
+								<script>
+								/* 페이지3 슬라이드 배너 */    
+								$(document).ready(function(){
+								   $(".img_box").sliding({spd:500, intv:3800, chd:"li", next:".btn_box3 .next", prev:".btn_box3 .prev",playBtn:".btn_box3 .play"}); 
+								});    
+								</script>
+					</div>
+				</div>
+			</section>
+		   </div>
+        </main>
+        <footer class="ft">
+        <div class="ft_wrap1">
+            <nav class="fnb">
+                <ul>
+                    <li>
+                        <span class="cur_cate">나의 여행</span>
+                        <ul class="popup">
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910001000000" target="_blank" title="나의 여행일정 새창열림">나의 여행일정</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910002000000" target="_blank" title="찜한 여행 새창열림">찜한 여행</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910003000000" target="_blank" title="나의 리뷰 새창열림">나의 리뷰</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910004000000" target="_blank" title="방문 여행지 새창열림">방문 여행지</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910008000000" target="_blank" title="관광문의 새창열림">관광문의</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910006000000" target="_blank" title="틀린정보신고 새창열림">틀린정보신고</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008910036000000" target="_blank" title="정보수정 새창열림">정보수정</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                       <span class="cur_cate">제주여행추천</span>
+                       <ul class="popup">
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008911001000000" target="_blank" title="일정 추천 새창열림">일정 추천</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008911002000000" target="_blank" title="여행 큐레이션 새창열림">여행 큐레이션</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008911003000000" target="_blank" title="테마여행 새창열림">테마여행</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008911004000000" target="_blank" title="축제와 행사 새창열림">축제와 행사</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008911005000000" target="_blank" title="제주문화공연 새창열림">제주문화공연</a></li>
+                            <li><a href="https://tour.geoje.go.kr/index.geoje?menuCd=DOM_000008911006000000" target="_blank" title="알쓸신제 원정대 새창열림">알쓸신제 원정대</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="cur_cate">쇼핑</span>
+                        <ul class="popup">
+                            <li><a href="http://www.gyeongnam.go.kr" target="_blank" title="전체 새창열림">전체</a></li>
+                             <li><a href="http://www.changwon.go.kr" target="_blank" title="전통시장 새창열림">전통시장</a></li>
+                             <li><a href="http://www.jinju.go.kr" target="_blank" title="플리마켓 새창열림">플리마켓</a></li>
+                             <li><a href="http://www.tongyeong.go.kr/main/" target="_blank" title="면세점 새창열림">면세점</a></li>
+                             <li><a href="http://www.sacheon.go.kr" target="_blank" title="상점/상가 새창열림">상점/상가</a></li>
+                             <li><a href="http://www.gimhae.go.kr" target="_blank" title="특산품 새창열림">특산품</a></li>
+                             <li><a href="http://www.miryang.go.kr" target="_blank" title="관광기념품 새창열림">관광기념품</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="cur_cate">교통정보</span>
+                        <ul class="popup">
+                            <li><a href="http://www.gjcl.go.kr" target="_blank" title="버스 이용안내 새창열림">버스 이용안내</a></li>
+                             <li><a href="http://www.geoje.go.kr/yacht" target="_blank" title="관광지 순환버스 새창열림">관광지 순환버스</a></li>
+                             <li><a href="https://www.peti.go.kr" target="_blank" title="택시 새창열림">택시</a></li>
+                             <li><a href="http://www.gw.re.kr" target="_blank" title="거제시여성인력개발센터 새창열림">거제시여성인력개발센터</a></li>
+                             <li><a href="http://www.gjyc.kr" target="_blank" title="청소년수련관 새창열림">청소년수련관</a></li>
+                             <li><a href="http://www.geojehuyang.or.kr" target="_blank" title="거제자연휴양림 새창열림">거제자연휴양림</a></li>
+                             <li><a href="http://www.cheongma.or.kr" target="_blank" title="청마기념관 새창열림">청마기념관</a></li>
+                             <li><a href="http://gev.co.kr" target="_blank" title="거제시영어마을 새창열림">거제시영어마을</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="ft_wrap2">
+            <ul class="ft_banner">
+                <li><a href=""><img src="./img/f_ban1.png" alt="하단슬라이드배너이미지1"></a></li>
+                <li><a href=""><img src="./img/f_ban2.png" alt="하단슬라이드배너이미지2"></a></li>
+                <li><a href=""><img src="./img/f_ban3.png" alt="하단슬라이드배너이미지3"></a></li>
+                <li><a href=""><img src="./img/f_ban4.png" alt="하단슬라이드배너이미지4"></a></li>
+                <li><a href=""><img src="./img/f_ban5.png" alt="하단슬라이드배너이미지5"></a></li>
+                <li><a href=""><img src="./img/f_ban6.png" alt="하단슬라이드배너이미지6"></a></li>
+                <li><a href=""><img src="./img/f_ban7.png" alt="하단슬라이드배너이미지7"></a></li>
+                <li><a href=""><img src="./img/f_ban8.png" alt="하단슬라이드배너이미지8"></a></li>
+                <li><a href=""><img src="./img/f_ban9.png" alt="하단슬라이드배너이미지9"></a></li>
+                <li><a href=""><img src="./img/f_ban10.png" alt="하단슬라이드배너이미지10"></a></li>
+            </ul>
+        </div>
+        <script>
+        /* 푸터 슬라이드 배너 */    
+        $(document).ready(function(){
+           $(".ft_banner").sliding({spd:500, intv:4500, chd:"li"}); 
+        });    
+        </script>
+        <div class="ft_wrap2">
+            <nav class="ft_link">
+                <ul>
+                    <li><a href="">개인정보처리방침</a></li>
+                    <li><a href="">이용약관</a></li>
+                    <li><a href="">틀린정보신고</a></li>
+                    <li><a href="">제주관광문의</a></li>
+                    <li><a href="">제주관광사진이용</a></li>
+                    <li><a href="">JEJU TourAPI</a></li>
+                    <li><a href="">제주소식</a></li>
+                    <li><a href="">관광업체등록신청</a></li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                <p class="copy1">(63122) 제주특별자치도 제주시 선덕로 23(연동) 제주웰컴센터 </p>
+                <p class="copy1">관광문의 : 제주관광공사 Tel : 064-740-6000~1 FAX: 064-740-6090 사업자등록번호 : 616-82-21432</p>
+				<p class="copy1">관광불편신고 : 제주안내 120콜센터(국번없이 120번)</p>
+                <p class="copy1">Copyright ⓒ Jeju Tourism Organization, All Rights Reserved.
+                </p>
+                <p class="copy1">홈페이지에 게시된 이메일 주소가 자동수집되는 것을 거부하며, 위반시 정보통신망법에 의해 처벌될 수 있습니다.</p>
+            </div>
+            <a href="" class="wamark">
+                <img src="./img/icons/wacc-logo.png" alt="WA인증">
+            </a>
+            <a href="" class="mark2">
+                <img src="./img/icons/logo_.png" alt="">
+            </a>
+        </div>
+        </footer>
+    <div class="quick">
+        <ul>
+            <li class="item1"><a href=""><span class="qtxt">여행정보</span><span class="qicon"></span></a></li>
+            <li class="item2"><a href=""><span class="qtxt">테마여행</span><span class="qicon"></span></a></li>
+            <li class="item3"><a href=""><span class="qtxt">소식정보</span><span class="qicon"></span></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
+
